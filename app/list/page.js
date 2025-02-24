@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database.js";
 import Link from "next/link";
+import DetailLink from "./DetailLink";
 
 export default async function List() {
   const db = (await connectDB).db("forum");
@@ -18,7 +19,7 @@ function Post(props) {
   const posting = props.posting;
   return (
     <div className="list-item">
-      <Link href={"/detail/" + posting._id}>
+      <Link prefetch={false} href={`/detail/${posting._id}`}>
         <h4>{posting.title}</h4>
       </Link>
       <p>{posting.content}</p>
