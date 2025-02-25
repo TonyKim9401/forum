@@ -14,10 +14,12 @@ export default function ListItem({ postingList }) {
             <Link href={`/edit/${posting._id}`}>✏️</Link>
             <span
               onClick={(e) => {
-                fetch("/api/post/delete", {
+                /*fetch("/api/post/delete", {
                   method: "DELETE",
                   body: JSON.stringify({ _id: posting._id }),
                 })
+                */
+                fetch(`/api/post/getDelete?_id=${posting._id}`)
                   .then((r) => {
                     if (r.status == 200) {
                       return r.json();
