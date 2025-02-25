@@ -14,12 +14,24 @@ export default function ListItem({ postingList }) {
             <Link href={`/edit/${posting._id}`}>✏️</Link>
             <span
               onClick={() => {
-                fetch("/api/test", {
-                  method: "POST",
-                  body: JSON.stringify([1, 2, 3]),
-                }).then(() => {
-                  console.log("test");
-                });
+                fetch("/api/post/delete", {
+                  method: "DELETE",
+                  body: JSON.stringify({ _id: posting._id }),
+                })
+                  .then((r) => {
+                    if (r.status == 200) {
+                      return r.json();
+                    } else {
+                      // server error result
+                    }
+                  })
+                  .then((result) => {
+                    // success code
+                  })
+                  .catch((error) => {
+                    // internet issues etc
+                    console.log(error);
+                  });
               }}
             >
               🗑️
