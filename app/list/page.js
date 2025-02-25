@@ -22,6 +22,7 @@ function Post(props) {
       <Link prefetch={false} href={`/detail/${posting._id}`}>
         <h4>{posting.title}</h4>
       </Link>
+      <Link href={`/edit/${posting._id}`}>✏️</Link>
       <p>{posting.content}</p>
     </div>
   );
