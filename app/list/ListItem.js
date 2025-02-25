@@ -13,7 +13,7 @@ export default function ListItem({ postingList }) {
             </Link>
             <Link href={`/edit/${posting._id}`}>✏️</Link>
             <span
-              onClick={() => {
+              onClick={(e) => {
                 fetch("/api/post/delete", {
                   method: "DELETE",
                   body: JSON.stringify({ _id: posting._id }),
@@ -27,6 +27,10 @@ export default function ListItem({ postingList }) {
                   })
                   .then((result) => {
                     // success code
+                    e.target.parentElement.style.opacity = 0;
+                    setTimeout(() => {
+                      e.target.parentElement.style.display = "none";
+                    }, 1000);
                   })
                   .catch((error) => {
                     // internet issues etc
