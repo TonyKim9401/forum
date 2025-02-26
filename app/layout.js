@@ -34,7 +34,7 @@ export default async function RootLayout({ children }) {
             Tony forum
           </Link>
           <Link href="/list">List</Link>
-          {session ? (
+          {session.user ? (
             <span>
               {session.user.name}
               <LogoutBtn />
