@@ -1,6 +1,7 @@
 import { connectDB } from "@/util/database.js";
 import { ObjectId } from "mongodb";
 import Comment from "./Comment";
+import { notFound } from "next/navigation";
 
 export default async function Detail(props) {
   const resolvedParams = await props.params;
@@ -9,6 +10,8 @@ export default async function Detail(props) {
   const posting = await db
     .collection("post")
     .findOne({ _id: new ObjectId(postId) });
+
+  if (posting === null) return notFound();
 
   return (
     <div>
