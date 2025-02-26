@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database.js";
 import { ObjectId } from "mongodb";
+import Comment from "./Comment";
 
 export default async function Detail(props) {
   const resolvedParams = await props.params;
@@ -14,6 +15,7 @@ export default async function Detail(props) {
       <h4>Detail Page</h4>
       <h4>{posting.title}</h4>
       <p>{posting.content}</p>
+      <Comment parent={posting._id.toString()} />
     </div>
   );
 }
