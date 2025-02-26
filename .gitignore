@@ -42,3 +42,6 @@ next-env.d.ts
 
 # database
 /util/database.js
+
+# oauth github provider
+.env
