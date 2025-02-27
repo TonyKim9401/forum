@@ -11,7 +11,6 @@ export async function middleware(request) {
   NextResponse.redirect() // redirect to other pages
   NextResponse.rewrite() // move to other pages with same URL
   */
-
   /* handling cookies
   request.cookies.get('cookieName')  // print
   request.cookies.has('cookieName')  // check exists
@@ -25,7 +24,6 @@ export async function middleware(request) {
     httpOnly : true
   })  
   return response  // create cookie
-  */
 
   const session = await getToken({ req: request });
 
@@ -40,4 +38,5 @@ export async function middleware(request) {
     console.log(request.headers.get("sec-ch-ua-platform"));
     return NextResponse.next();
   }
+  */
 }
