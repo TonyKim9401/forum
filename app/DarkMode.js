@@ -1,9 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function DarkMode() {
+  let [darkMode, setDarkMode] = useState("light");
   const router = useRouter();
 
   useEffect(() => {
@@ -26,10 +27,11 @@ export default function DarkMode() {
         modeCookie === "light"
           ? (document.cookie = "mode=dark; max-age=" + 3600 * 24 * 400)
           : (document.cookie = "mode=light; max-age=" + 3600 * 24 * 400);
+        modeCookie === "light" ? setDarkMode("light") : setDarkMode("dark");
         router.refresh();
       }}
     >
-      🌙
+      {darkMode === "dark" ? "🌙" : "☀️"}
     </span>
   );
 }
