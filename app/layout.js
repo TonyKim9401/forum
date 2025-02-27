@@ -5,6 +5,8 @@ import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogoutBtn from "./LogoutBtn";
+import DarkMode from "./DarkMode";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +26,20 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   // get Server Session information, authOptions required
   const session = await getServerSession(authOptions);
-  console.log(session);
+
+  const modeCookie = cookies().get("mode");
+
+  console.log(modeCookie);
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={
+          modeCookie != undefined && modeCookie.value === "dark"
+            ? "dark-mode"
+            : ""
+        }
+      >
         <div className="navbar">
           <Link href="/" className="logo">
             Tony forum
@@ -42,6 +53,7 @@ export default async function RootLayout({ children }) {
           ) : (
             <LoginBtn />
           )}
+          <DarkMode />
         </div>
         {children}
       </body>
